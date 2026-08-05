@@ -1,0 +1,26 @@
+---
+import ArchiveLayout from '../../../layouts/ArchiveLayout.astro';
+---
+
+<ArchiveLayout
+  lang="en"
+  title="Archive"
+  description="Stories about open source, technical communities and projects that still have something to teach."
+  alternateHref="/es/articulos/"
+  alternateLabel="Leer en español"
+>
+  <section class="archive-list" aria-label="Articles">
+    <a class="archive-card" href="/en/articles/hipo/01-an-application-to-manage-an-ipod/">
+      <p class="card-kicker">Hipo series · Part 1</p>
+      <h2>Hipo: an application to manage an iPod</h2>
+      <p>An entry point into a time of C#, Mono, GNOME and free software.</p>
+      <span class="card-link">Read the article →</span>
+    </a>
+    <article class="archive-card">
+      <p class="card-kicker">Coming soon</p>
+      <h2>The invisible work of open source</h2>
+      <p>Quality, packaging, translations, community and maintenance.</p>
+      <span class="card-link">In preparation</span>
+    </article>
+  </section>
+</ArchiveLayout>
