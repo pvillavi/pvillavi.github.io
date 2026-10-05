@@ -48,7 +48,7 @@
     .experience-grid{position:relative;margin-top:34px}
     .experience-grid:before,.experience-grid:after{content:"";position:absolute;left:4%;top:-19px;height:2px;border-radius:999px}
     .experience-grid:before{right:4%;background:rgba(148,163,184,.14)}
-    .experience-grid:after{width:calc(var(--timeline-progress,0) * .92);background:linear-gradient(90deg,#2f80ff,#8b5cf6);box-shadow:0 0 18px rgba(47,128,255,.55);transition:width .08s linear}
+    .experience-grid:after{width:var(--timeline-progress,0%);background:linear-gradient(90deg,#2f80ff,#8b5cf6);box-shadow:0 0 18px rgba(47,128,255,.55);transition:width .08s linear}
     .experience-card{position:relative}
     .experience-card:after{content:"";position:absolute;top:-27px;left:50%;width:12px;height:12px;border:2px solid #2f80ff;border-radius:50%;background:#061126;box-shadow:0 0 0 4px rgba(47,128,255,.09),0 0 17px rgba(47,128,255,.34);transform:translateX(-50%)}
     .v2-chip{position:fixed;right:18px;bottom:18px;z-index:10;padding:8px 11px;border:1px solid rgba(85,168,255,.28);border-radius:999px;background:rgba(4,10,22,.78);backdrop-filter:blur(16px);color:#b8d4ff;font:700 .68rem/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.08em;box-shadow:0 12px 34px rgba(0,0,0,.28)}
@@ -203,7 +203,7 @@
     const start = window.innerHeight * .72;
     const distance = Math.max(1, r.height + window.innerHeight * .18);
     const progress = Math.min(1, Math.max(0, (start - r.top) / distance));
-    timeline.style.setProperty('--timeline-progress', String(progress));
+    timeline.style.setProperty('--timeline-progress', `${progress * 92}%`);
   };
   updateTimeline();
   window.addEventListener('scroll', updateTimeline, {passive:true});
