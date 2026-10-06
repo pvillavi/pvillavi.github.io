@@ -776,6 +776,144 @@
     .signal-node{display:none!important}
   </style>
 
+
+  <style>
+    /* V2.4.1 — clean portrait: no marks, no overlays on skin */
+    .hero-signals{display:none!important}
+
+    .hero:before{
+      top:-8px;
+      right:-4px;
+      width:min(45vw,620px);
+      height:540px;
+      z-index:-1;
+      background:
+        linear-gradient(90deg,
+          rgba(2,6,18,.9) 0%,
+          rgba(2,6,18,.58) 13%,
+          rgba(2,6,18,.2) 27%,
+          rgba(2,6,18,.04) 44%,
+          rgba(2,6,18,.03) 78%,
+          rgba(2,6,18,.22) 91%,
+          rgba(2,6,18,.48) 100%
+        ),
+        linear-gradient(180deg,
+          transparent 0%,
+          transparent 62%,
+          rgba(2,6,18,.16) 76%,
+          rgba(2,6,18,.5) 90%,
+          #020612 100%
+        ),
+        url("/assets/profile.jpg") center right/auto 92% no-repeat;
+      box-shadow:-110px 32px 160px rgba(2,6,18,.78);
+      filter:saturate(1.02) contrast(1.025);
+      -webkit-mask-image:linear-gradient(90deg,
+        transparent 0%,
+        rgba(0,0,0,.22) 8%,
+        rgba(0,0,0,.62) 20%,
+        #000 38%,
+        #000 82%,
+        rgba(0,0,0,.76) 91%,
+        transparent 100%
+      );
+      mask-image:linear-gradient(90deg,
+        transparent 0%,
+        rgba(0,0,0,.22) 8%,
+        rgba(0,0,0,.62) 20%,
+        #000 38%,
+        #000 82%,
+        rgba(0,0,0,.76) 91%,
+        transparent 100%
+      );
+      transform:translate3d(var(--photo-x,0px),var(--photo-y,0px),0);
+      will-change:transform
+    }
+
+    .hero:after{
+      content:"";
+      position:absolute;
+      z-index:0;
+      right:-6px;
+      bottom:6px;
+      width:min(44vw,600px);
+      height:170px;
+      pointer-events:none;
+      background:linear-gradient(180deg,transparent 0%,rgba(2,6,18,.16) 32%,rgba(2,6,18,.7) 78%,#020612 100%);
+      filter:blur(14px);
+      opacity:.82
+    }
+
+    .telemetry-panel{
+      z-index:2;
+    }
+
+    @media(max-width:1120px){
+      .hero:before{
+        top:22px;
+        left:50%;
+        right:auto;
+        width:min(100%,670px);
+        height:348px;
+        background:
+          linear-gradient(90deg,
+            rgba(2,6,18,.58) 0%,
+            rgba(2,6,18,.12) 19%,
+            rgba(2,6,18,.03) 36%,
+            rgba(2,6,18,.03) 64%,
+            rgba(2,6,18,.12) 81%,
+            rgba(2,6,18,.58) 100%
+          ),
+          linear-gradient(180deg,transparent 0%,transparent 61%,rgba(2,6,18,.22) 78%,#020612 100%),
+          url("/assets/profile.jpg") center center/auto 96% no-repeat;
+        -webkit-mask-image:linear-gradient(90deg,
+          transparent 0%,
+          rgba(0,0,0,.45) 8%,
+          #000 22%,
+          #000 78%,
+          rgba(0,0,0,.45) 92%,
+          transparent 100%
+        );
+        mask-image:linear-gradient(90deg,
+          transparent 0%,
+          rgba(0,0,0,.45) 8%,
+          #000 22%,
+          #000 78%,
+          rgba(0,0,0,.45) 92%,
+          transparent 100%
+        );
+        transform:translateX(-50%)
+      }
+      .hero:after{
+        left:50%;
+        right:auto;
+        bottom:auto;
+        top:220px;
+        width:min(100%,650px);
+        height:150px;
+        transform:translateX(-50%)
+      }
+    }
+
+    @media(max-width:720px){
+      .hero:before{
+        top:12px;
+        height:258px;
+        width:100%;
+        background-size:auto 98%
+      }
+      .hero:after{
+        top:170px;
+        width:100%;
+        height:118px
+      }
+    }
+
+    @media(max-width:430px){
+      .hero:before{height:228px}
+      .hero:after{top:150px;height:104px}
+    }
+  </style>
+
 </head>
 <body>
 <canvas class="ambient-canvas" aria-hidden="true"></canvas>
