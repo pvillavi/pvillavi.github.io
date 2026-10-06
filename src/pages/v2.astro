@@ -556,6 +556,226 @@
     }
   </style>
 
+
+  <style>
+    /* V2.4 — portrait integration + simplified hero atmosphere */
+    .hero:before{
+      top:-12px;
+      right:-8px;
+      width:min(46vw,630px);
+      height:548px;
+      z-index:-1;
+      background:
+        linear-gradient(90deg,
+          rgba(2,6,18,.94) 0%,
+          rgba(2,6,18,.74) 10%,
+          rgba(2,6,18,.34) 24%,
+          rgba(2,6,18,.08) 43%,
+          rgba(2,6,18,.05) 68%,
+          rgba(2,6,18,.34) 90%,
+          rgba(2,6,18,.72) 100%
+        ),
+        linear-gradient(180deg,
+          rgba(2,6,18,.03) 0%,
+          rgba(2,6,18,.02) 54%,
+          rgba(2,6,18,.24) 70%,
+          rgba(2,6,18,.72) 88%,
+          #020612 100%
+        ),
+        radial-gradient(circle at 66% 34%,rgba(70,127,255,.17),transparent 29%),
+        url("/assets/profile.jpg") center right/auto 92% no-repeat;
+      box-shadow:-118px 36px 170px rgba(2,6,18,.82);
+      filter:saturate(1.04) contrast(1.045);
+      -webkit-mask-image:
+        linear-gradient(90deg,
+          transparent 0%,
+          rgba(0,0,0,.15) 7%,
+          rgba(0,0,0,.5) 19%,
+          rgba(0,0,0,.88) 34%,
+          #000 48%,
+          #000 76%,
+          rgba(0,0,0,.9) 84%,
+          rgba(0,0,0,.55) 94%,
+          transparent 100%
+        ),
+        linear-gradient(180deg,
+          rgba(0,0,0,.96) 0%,
+          #000 58%,
+          rgba(0,0,0,.88) 72%,
+          rgba(0,0,0,.42) 90%,
+          transparent 100%
+        );
+      -webkit-mask-composite:source-in;
+      mask-image:
+        linear-gradient(90deg,
+          transparent 0%,
+          rgba(0,0,0,.15) 7%,
+          rgba(0,0,0,.5) 19%,
+          rgba(0,0,0,.88) 34%,
+          #000 48%,
+          #000 76%,
+          rgba(0,0,0,.9) 84%,
+          rgba(0,0,0,.55) 94%,
+          transparent 100%
+        ),
+        linear-gradient(180deg,
+          rgba(0,0,0,.96) 0%,
+          #000 58%,
+          rgba(0,0,0,.88) 72%,
+          rgba(0,0,0,.42) 90%,
+          transparent 100%
+        );
+      mask-composite:intersect
+    }
+
+    .hero:after{
+      content:"";
+      position:absolute;
+      z-index:1;
+      top:4px;
+      right:-8px;
+      width:min(45vw,620px);
+      height:540px;
+      pointer-events:none;
+      background:
+        radial-gradient(ellipse at 68% 34%,rgba(94,145,255,.085) 0%,rgba(94,145,255,.025) 31%,transparent 55%),
+        radial-gradient(ellipse at 46% 79%,rgba(89,117,190,.07) 0%,transparent 39%),
+        linear-gradient(90deg,rgba(2,6,18,.34),transparent 26%,transparent 74%,rgba(2,6,18,.16)),
+        linear-gradient(180deg,transparent 54%,rgba(2,6,18,.14) 72%,rgba(2,6,18,.62) 100%);
+      filter:blur(10px);
+      opacity:.88;
+      -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 24%,#000 100%);
+      mask-image:linear-gradient(90deg,transparent 0%,#000 24%,#000 100%)
+    }
+
+    .hero-signals{
+      z-index:0;
+      top:66px;
+      right:8px;
+      width:min(40vw,535px);
+      height:376px;
+      opacity:.48;
+      filter:drop-shadow(0 0 14px rgba(47,128,255,.08))
+    }
+    .signal-lines{overflow:visible}
+    .signal-path{
+      fill:none;
+      vector-effect:non-scaling-stroke;
+      stroke-linecap:round
+    }
+    .signal-path-a{
+      stroke:rgba(103,168,255,.24);
+      stroke-width:1.05;
+      stroke-dasharray:2 9
+    }
+    .signal-path-b{
+      stroke:rgba(139,112,246,.18);
+      stroke-width:.9;
+      stroke-dasharray:1 11
+    }
+    .signal-path-c{
+      stroke:rgba(102,176,218,.12);
+      stroke-width:.8;
+      stroke-dasharray:18 14
+    }
+    .signal-dot{
+      fill:#07152d;
+      stroke-width:1.1;
+      vector-effect:non-scaling-stroke
+    }
+    .signal-dot-a{stroke:rgba(105,174,255,.76);filter:drop-shadow(0 0 5px rgba(47,128,255,.7))}
+    .signal-dot-b{stroke:rgba(166,131,255,.68);filter:drop-shadow(0 0 5px rgba(139,92,246,.55))}
+    .signal-dot-c{stroke:rgba(86,206,184,.58);filter:drop-shadow(0 0 4px rgba(32,213,107,.42))}
+    .signal-tick{
+      position:absolute;
+      width:34px;
+      height:1px;
+      background:linear-gradient(90deg,transparent,rgba(120,179,255,.34),transparent);
+      opacity:.7
+    }
+    .signal-tick-a{right:7%;top:42%;transform:rotate(-18deg)}
+    .signal-tick-b{left:22%;bottom:21%;transform:rotate(16deg)}
+
+    .telemetry-panel{
+      z-index:4;
+      background:linear-gradient(180deg,rgba(5,13,28,.7),rgba(3,8,18,.48));
+      border-color:rgba(100,171,255,.2);
+      box-shadow:
+        0 26px 80px rgba(0,0,0,.34),
+        inset 0 1px 0 rgba(255,255,255,.045),
+        -26px 0 80px rgba(20,73,160,.035)
+    }
+
+    @media(max-width:1120px){
+      .hero:before{
+        top:20px;
+        left:50%;
+        right:auto;
+        width:min(100%,680px);
+        height:354px;
+        background:
+          linear-gradient(90deg,rgba(2,6,18,.66),rgba(2,6,18,.08) 26%,rgba(2,6,18,.08) 74%,rgba(2,6,18,.66)),
+          linear-gradient(180deg,transparent 52%,rgba(2,6,18,.32) 76%,#020612 100%),
+          radial-gradient(circle at 50% 33%,rgba(70,127,255,.13),transparent 30%),
+          url("/assets/profile.jpg") center center/auto 96% no-repeat;
+        -webkit-mask-image:
+          linear-gradient(90deg,transparent 0%,rgba(0,0,0,.48) 10%,#000 24%,#000 76%,rgba(0,0,0,.48) 90%,transparent 100%),
+          linear-gradient(180deg,#000 0%,#000 64%,rgba(0,0,0,.55) 85%,transparent 100%);
+        mask-image:
+          linear-gradient(90deg,transparent 0%,rgba(0,0,0,.48) 10%,#000 24%,#000 76%,rgba(0,0,0,.48) 90%,transparent 100%),
+          linear-gradient(180deg,#000 0%,#000 64%,rgba(0,0,0,.55) 85%,transparent 100%);
+        transform:translateX(-50%)
+      }
+      .hero:after{
+        top:24px;
+        left:50%;
+        right:auto;
+        width:min(100%,660px);
+        height:340px;
+        transform:translateX(-50%);
+        background:
+          radial-gradient(ellipse at 50% 36%,rgba(94,145,255,.065),transparent 44%),
+          linear-gradient(180deg,transparent 54%,rgba(2,6,18,.46) 100%);
+        -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 18%,#000 82%,transparent 100%);
+        mask-image:linear-gradient(90deg,transparent 0%,#000 18%,#000 82%,transparent 100%)
+      }
+    }
+
+    @media(max-width:720px){
+      .hero:before{
+        top:12px;
+        height:266px;
+        width:100%;
+        background-size:auto 98%;
+        -webkit-mask-image:
+          linear-gradient(90deg,transparent 0%,rgba(0,0,0,.6) 8%,#000 21%,#000 79%,rgba(0,0,0,.6) 92%,transparent 100%),
+          linear-gradient(180deg,#000 0%,#000 58%,rgba(0,0,0,.5) 82%,transparent 100%);
+        mask-image:
+          linear-gradient(90deg,transparent 0%,rgba(0,0,0,.6) 8%,#000 21%,#000 79%,rgba(0,0,0,.6) 92%,transparent 100%),
+          linear-gradient(180deg,#000 0%,#000 58%,rgba(0,0,0,.5) 82%,transparent 100%)
+      }
+      .hero:after{
+        top:12px;
+        width:100%;
+        height:270px
+      }
+    }
+
+    @media(max-width:430px){
+      .hero:before{height:232px}
+      .hero:after{height:236px}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      .hero:before{transform:none}
+    }
+  </style>
+
+
+  <style>
+    .signal-node{display:none!important}
+  </style>
+
 </head>
 <body>
 <canvas class="ambient-canvas" aria-hidden="true"></canvas>
@@ -587,12 +807,15 @@
     </div>
     <div class="hero-signals" aria-hidden="true">
       <svg class="signal-lines" viewBox="0 0 520 360" preserveAspectRatio="none">
-        <path d="M44 86 C132 86 145 120 224 120 S328 76 456 76" />
-        <path d="M96 244 C184 244 212 204 296 204 S386 250 474 250" />
+        <path class="signal-path signal-path-a" d="M28 102 C118 58 178 88 238 118 S354 150 490 82" />
+        <path class="signal-path signal-path-b" d="M72 274 C166 232 210 222 298 238 S404 292 494 244" />
+        <path class="signal-path signal-path-c" d="M296 38 C342 102 346 170 326 222 S282 304 226 336" />
+        <circle class="signal-dot signal-dot-a" cx="238" cy="118" r="3.5" />
+        <circle class="signal-dot signal-dot-b" cx="326" cy="222" r="3.5" />
+        <circle class="signal-dot signal-dot-c" cx="404" cy="263" r="3" />
       </svg>
-      <span class="signal-node signal-node-a"><i></i><b>CLOUD</b></span>
-      <span class="signal-node signal-node-b"><i></i><b>DETECTION</b></span>
-      <span class="signal-node signal-node-c"><i></i><b>AUTOMATION</b></span>
+      <span class="signal-tick signal-tick-a"></span>
+      <span class="signal-tick signal-tick-b"></span>
     </div>
     <aside class="telemetry-panel" aria-label="Engineering profile">
       <div class="telemetry-head"><span>ENGINEERING PROFILE</span><span class="telemetry-pulse"></span></div>
