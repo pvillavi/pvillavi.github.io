@@ -287,6 +287,66 @@
     }
   </style>
 
+
+  <style>
+    /* V2.2 editorial details */
+    .cards{
+      grid-template-rows:auto 1fr
+    }
+    .cards:before{
+      content:"01  /  FOCUS AREAS";
+      grid-column:1/-1;
+      align-self:end;
+      margin:0 0 2px 2px;
+      color:#55a8ff;
+      font:850 .72rem/1 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;
+      letter-spacing:.17em
+    }
+    .card:nth-child(2) .emoji{font-size:0}
+    .card:nth-child(2) .emoji:before{
+      content:"›";
+      color:#66b2ff;
+      font:850 .95rem/1 ui-monospace,SFMono-Regular,Menlo,monospace
+    }
+    .card:nth-child(3) .emoji:before{
+      content:"•";
+      color:#43dbc1;
+      font-size:.78rem
+    }
+    .card:nth-child(4) .emoji:before{
+      content:"+";
+      color:#a98bff;
+      font:850 .82rem/1 ui-monospace,SFMono-Regular,Menlo,monospace
+    }
+    .topbar{
+      position:sticky;
+      top:10px;
+      z-index:30;
+      margin-inline:-14px;
+      padding:7px 14px;
+      border:1px solid transparent;
+      border-radius:14px;
+      transition:background .22s ease,border-color .22s ease,box-shadow .22s ease,backdrop-filter .22s ease
+    }
+    .topbar.is-scrolled{
+      border-color:rgba(148,163,184,.12);
+      background:rgba(3,8,19,.72);
+      box-shadow:0 16px 48px rgba(0,0,0,.22);
+      backdrop-filter:blur(18px)
+    }
+    .nav a{transition:color .18s ease}
+    .nav a.active:after{box-shadow:0 0 14px rgba(47,128,255,.42)}
+    .v2-chip{opacity:.46;font-size:.62rem}
+    @media(max-width:1120px){
+      .cards{grid-template-rows:auto 1fr 1fr}
+    }
+    @media(max-width:720px){
+      .topbar{top:6px;margin-inline:-7px;padding-inline:7px}
+      .cards{grid-template-rows:auto}
+      .cards:before{margin-bottom:1px}
+    }
+  </style>
+
 </head>
 <body>
 <canvas class="ambient-canvas" aria-hidden="true"></canvas>
@@ -523,6 +583,33 @@
     requestAnimationFrame(draw);
   };
   requestAnimationFrame(draw);
+})();
+</script>
+
+<script>
+(() => {
+  const topbar = document.querySelector('.topbar');
+  const navLinks = [...document.querySelectorAll('.nav a[href^="#"]')];
+  const sections = navLinks
+    .map(link => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+  const updateTopbar = () => topbar?.classList.toggle('is-scrolled', window.scrollY > 18);
+  updateTopbar();
+  window.addEventListener('scroll', updateTopbar, {passive:true});
+
+  if (!sections.length) return;
+  const sectionObserver = new IntersectionObserver(entries => {
+    const visible = entries
+      .filter(entry => entry.isIntersecting)
+      .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (!visible) return;
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + visible.target.id);
+    });
+  }, {rootMargin:'-22% 0px -58% 0px', threshold:[0,.15,.3,.6]});
+
+  sections.forEach(section => sectionObserver.observe(section));
 })();
 </script>
 </body>
