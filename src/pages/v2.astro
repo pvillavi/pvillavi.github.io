@@ -766,8 +766,8 @@
       .hero:after{height:236px}
     }
 
-    @media(prefers-reduced-motion:reduce){
-      .hero:before{transform:none}
+    @media(prefers-reduced-motion:reduce) and (min-width:1121px){
+      .hero:before{transform:translate3d(0,0,0)}
     }
   </style>
 
